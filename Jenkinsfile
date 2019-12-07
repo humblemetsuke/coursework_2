@@ -1,9 +1,10 @@
 pipeline {
          agent any
          stages {
-                 stage('One') {
+                 stage('Checkout') {
                  steps {
-                     echo 'Hi, this is Zulaikha from edureka'
+                     echo 'Retrieving Jenkinsfile from the github repository.'
+                          git 'https://github.com/humblemetsuke/coursework_2'
                  }
                  }
                  stage('Two') {
