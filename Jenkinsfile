@@ -4,7 +4,7 @@ pipeline {
                  stage('Checkout') {
                  steps {
                      echo 'Retrieving Jenkinsfile from the github repository.'
-                   
+                   checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'LocalBranch', localBranch: 'dummy']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/humblemetsuke/coursework_2']]])
                  }
                  }
                   
