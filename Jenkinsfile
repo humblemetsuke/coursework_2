@@ -1,6 +1,4 @@
 pipeline {
-
-def app 
          agent any
          stages {
                  stage('Checkout') {
@@ -26,7 +24,17 @@ def app
 
 stage ('build docker image') {
 
- app = docker.build("coursework_2")
+steps {
+echo 'Beginning to build the docker image.'
+
+script {
+
+def dockerImage=docker.build("coursework_2")
+
          }
+}
+
+}
+
 }
 }
