@@ -1,4 +1,6 @@
 pipeline {
+
+def app 
          agent any
          stages {
                  stage('Checkout') {
@@ -21,5 +23,9 @@ pipeline {
         }
     }
 }
+
+stage ('build docker image') {
+
+ app = docker.build("coursework_2")
          }
 }
