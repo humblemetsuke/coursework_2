@@ -29,3 +29,4 @@ stage ('build docker image') {
  app = docker.build("coursework_2")
          }
 }
+}
