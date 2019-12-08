@@ -8,55 +8,21 @@ pipeline {
                  }
                  }
                   
-                  post {
-
-        always {
-
-            echo 'Stage has completed!'
-
-          
-
+        stage('Sonarqube') {
+    environment {
+        scannerHome = tool 'SonarQubeScanner'
+    }
+    steps {
+        withSonarQubeEnv('sonarqube') {
+            sh "${scannerHome}/bin/sonar-scanner"
         }
-
-        success {
-
-            echo 'I succeeded!'
-
+        timeout(time: 10, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
         }
-
-        unstable {
-
-            echo 'I am unstable :/'
-
-        }
-
-        failure {
-
-            echo 'I failed :('
-
-        }
-
-        changed {
-
-            echo 'Things are different...'
-
-        }
-
-    }    
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                 stage('Two') {
-                 steps {
-                    input('Do you want to proceed?')
-                 }
-                 }
+    }
+}
+                 
+                 
                  stage('Three') {
                  when {
                        not {
