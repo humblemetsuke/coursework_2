@@ -45,7 +45,7 @@ script {
 
 withDockerRegistry(credentialsId: 'e1984af9-1751-4825-883a-9194875c8f89', url: '') {
          docker.push("${env.BUILD_NUMBER}")
-docker.push()
+docker.push(dockerImage)
          }
 }
 
