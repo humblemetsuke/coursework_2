@@ -36,14 +36,14 @@ def dockerImage=docker.build("coursework_2")
 
 }
 
-stage ('push docker image to DockerHun') {
+stage ('push docker image to DockerHub') {
 
 steps {
 echo 'Beginning to push the built docker image to Dockerhub.'
 
 script {
 
-withDockerRegistry(credentialsId: 'e1984af9-1751-4825-883a-9194875c8f89', url: 'https://hub.docker.com/') {
+withDockerRegistry(credentialsId: 'e1984af9-1751-4825-883a-9194875c8f89', url: '') {
          dockerImage.push("${env.BUILD_NUMBER}")
 dockerImage.push("latest")
          }
