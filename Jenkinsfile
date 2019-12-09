@@ -44,8 +44,8 @@ echo 'Beginning to push the built docker image to Dockerhub.'
 script {
 
 withDockerRegistry(credentialsId: 'e1984af9-1751-4825-883a-9194875c8f89', url: '') {
-         push("${env.BUILD_NUMBER}")
-push("coursework_2")
+         docker.push("${env.BUILD_NUMBER}")
+docker.push("coursework_2")
          }
 }
 
