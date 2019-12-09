@@ -43,7 +43,7 @@ echo 'Beginning to push the built docker image to Dockerhub.'
 
 script {
 
-docker.withRegistry('https:registry.hub.docker.com', 'docker-hub-credentials') {
+withDockerRegistry(credentialsId: 'e1984af9-1751-4825-883a-9194875c8f89', url: 'https://hub.docker.com/') {
          dockerImage.push("${env.BUILD_NUMBER}")
 dockerImage.push("latest")
          }
