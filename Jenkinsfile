@@ -45,7 +45,7 @@ script {
 
 withDockerRegistry(credentialsId: 'e1984af9-1751-4825-883a-9194875c8f89', url: '') {
          dockerImage.push("${env.BUILD_NUMBER}")
-dockerImage.push("coursework)2")
+dockerImage.push("coursework_2")
          }
 }
 
