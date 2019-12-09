@@ -29,7 +29,7 @@ echo 'Beginning to build the docker image.'
 
 script {
 
-def dockerImage=docker.build("coursework_2")
+docker.build("coursework_2")
 
          }
 }
