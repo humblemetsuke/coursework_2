@@ -1,7 +1,7 @@
 pipeline {
          agent any
          stages {
-                  dockerImage=''
+                  
                  stage('Checkout') {
                  steps {
                      echo 'Retrieving Jenkinsfile from the github repository.'
