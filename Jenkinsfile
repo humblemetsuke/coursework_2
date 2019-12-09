@@ -29,7 +29,7 @@ echo 'Beginning to build the docker image.'
 
 script {
 
-docker.build("coursework_2")
+dockerImage= docker.build("coursework_2")
 
          }
 }
@@ -45,7 +45,7 @@ script {
 
 withDockerRegistry(credentialsId: 'e1984af9-1751-4825-883a-9194875c8f89', url: '') {
          docker.push("${env.BUILD_NUMBER}")
-docker.push("coursework_2")
+docker.push()
          }
 }
 
