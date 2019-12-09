@@ -1,6 +1,7 @@
 pipeline {
          agent any
          stages {
+                  dockerImage=''
                  stage('Checkout') {
                  steps {
                      echo 'Retrieving Jenkinsfile from the github repository.'
@@ -44,8 +45,8 @@ echo 'Beginning to push the built docker image to Dockerhub.'
 script {
 
 withDockerRegistry(credentialsId: 'e1984af9-1751-4825-883a-9194875c8f89', url: '') {
-         docker.push("${env.BUILD_NUMBER}")
-docker.push(dockerImage)
+         
+dockerImage.push()
          }
 }
 
