@@ -36,5 +36,20 @@ def dockerImage=docker.build("coursework_2")
 
 }
 
+stage ('push docker image to DockerHun') {
+
+steps {
+echo 'Beginning to push the built docker image to Dockerhub.'
+
+script {
+
+docker.withRegistry('https:registry.hub.docker.com', 'docker-hub-credentials') {
+dockerImage.push("$(env.BUILD_NUMBER}")
+dockerImage.push("latest")
+         }
+}
+
+}
+
 }
 }
