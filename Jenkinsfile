@@ -1,15 +1,19 @@
 pipeline {
-         agent any
-         stages {
-                  
-                 stage('Checkout') {
+  environment {
+    registry = "humblemetsuke/coursework_2"
+    registryCredential = 'e1984af9-1751-4825-883a-9194875c8f89'
+    dockerImage = ''
+  }
+  agent any
+  stages {
+    stage('Checkout') {
                  steps {
                      echo 'Retrieving Jenkinsfile from the github repository.'
                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'LocalBranch', localBranch: 'dummy']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/humblemetsuke/coursework_2']]])
                  }
                  }
-                  
-        stage('SonarQube') {
+                 
+    stage('SonarQube') {
     environment {
         scannerHome = tool 'SonarQube'
     }
@@ -23,36 +27,26 @@ pipeline {
     }
 }
 
-stage ('build docker image') {
-
-steps {
-echo 'Beginning to build the docker image.'
-
-script {
-
- dockerImage= docker.build("coursework_2:${env.BUILD_ID}")
-
-         }
-}
-
-}
-
-stage ('push docker image to DockerHub') {
-
-steps {
-echo 'Beginning to push the built docker image to Dockerhub.'
-
-script {
-
-docker.withRegistry('', 'e1984af9-1751-4825-883a-9194875c8f89') {
-         
-
-         }
-         dockerImage.push()
-}
-
-}
-
-}
-}
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
+  }
 }
