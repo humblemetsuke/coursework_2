@@ -30,8 +30,8 @@ echo 'Beginning to build the docker image.'
 
 script {
 
- dockerImage= docker.build("coursework_2:${env.BUILD_ID}")
-dockerImage.push()
+ dockerImage= docker.build("humblemetsuke/coursework_2:${env.BUILD_ID}")
+
          }
 }
 
@@ -44,7 +44,7 @@ echo 'Beginning to push the built docker image to Dockerhub.'
 
 script {
 
-withDockerRegistry(credentialsId: 'e1984af9-1751-4825-883a-9194875c8f89', url: '') {
+docker.withRegistry(credentialsId: 'e1984af9-1751-4825-883a-9194875c8f89', url: '') {
          
 dockerImage.push()
          }
