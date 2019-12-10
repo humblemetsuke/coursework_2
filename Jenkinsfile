@@ -46,12 +46,9 @@ script {
 
 docker.withRegistry(credentialsId: 'e1984af9-1751-4825-883a-9194875c8f89', url: '') {
          
+        docker.push()
+         }
         
-         }
-         script 
-         {
-             bat "docker push humblemetsuke/coursework_2:build"     
-         }
 }
 
 }
