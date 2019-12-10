@@ -44,7 +44,7 @@ echo 'Beginning to push the built docker image to Dockerhub.'
 
 script {
 
-withDockerRegistry(credentialsId: ''92d48a33-a1a5-471d-aac5-9cd8ff1e12ef', url: '') {
+withDockerRegistry(credentialsId: '92d48a33-a1a5-471d-aac5-9cd8ff1e12ef', url: '') {
          
 dockerImage.push()
          }
