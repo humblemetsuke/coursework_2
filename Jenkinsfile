@@ -30,7 +30,7 @@ echo 'Beginning to build the docker image.'
 
 script {
 
-dockerImage= docker.build("coursework_2:${env.BUILD_ID}")
+def dockerImage= docker.build("coursework_2:${env.BUILD_ID}")
 
          }
 }
