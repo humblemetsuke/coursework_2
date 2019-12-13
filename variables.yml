@@ -1,0 +1,13 @@
+STATE_RES_NAME: "${STATE_RES_NAME}"
+ec2_region: "eu-west-1"
+ec2_instance_type: "t2.medium"
+ec2_image: "ami-02df9ea15c1778c9c"
+ec2_keypair: "XXXXXXX"
+ec2_volume_size: 8
+ec2_count: 1
+ec2_security_group_id: "sg-XXXXXXXXX"
+ec2_subnet_id: "subnet-XXXXXX"
+ec2_tag_Type: "App"
+ec2_tag_Role: "Kubernetes"
+aws_access_key_id: "XXXXXXXXXXXXXXX"
+aws_secret_access_key: "XXXXXXXXXX"
