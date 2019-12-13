@@ -48,7 +48,7 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
       
-      stages {
+      
       stage('Deploy VM') {
          steps {
             ansiblePlaybook playbook: 'roles/master/tasks/aws.yml'
